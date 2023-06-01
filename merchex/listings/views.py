@@ -1,32 +1,20 @@
 from django.shortcuts import render
 
 from django.http import HttpResponse
+from .models import Band, Listing
 
 # Create your views here.
 
 def hello(request):
-    return HttpResponse("<h1>Champion ! Keep learning ! </h1>")
+    bands = Band.objects.all()
+    return render(request, 'listings/hello.html', {'bands' : bands})
 
 def about(request):
-    return HttpResponse(
-        """<h1>A propos de nous</h1>
-        <p>Qu'est-ce que nous adorons merchex !</p>"""
-    )
+    return render(request, 'listings/about-us.html')
 
 def listings(request):
-    return HttpResponse(
-        """
-        <h1>Listings</h1>
-        <p>Awesome products ! We have plenty of them !</p>
-        """
-    )
+    listings = Listing.objects.all()
+    return render(request, 'listings/listings.html', {'listings': listings})
 
 def contact(request):
-    return HttpResponse(
-        """
-        <h1>Contact us</h1>
-        <form method='POST'>
-
-        </form>
-        """
-    )
+    return render(request, 'listings/contact-us.html')
