@@ -13,6 +13,9 @@
         {% endif %}
     </ul>
 
+    <p>
+        <a href="{% url 'listing-update' listing.id %}" class="btn btn-primary">Update listing</a>
+    </p>
     <a href="{% url 'listing-list' %}">See all Listings</a>
 
 {% endblock %}

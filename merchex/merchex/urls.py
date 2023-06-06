@@ -33,4 +33,5 @@ urlpatterns = [
     path('listings/', view=views.listing_list, name='listing-list'),
     path('listings/<int:id>', view=views.listing_detail, name='listing-detail'),
     path('listings/add/', view=views.listing_create, name='listing-create'),
+    path('listings/<int:id>/update', view=views.listing_update, name='listing-update'),
 ]

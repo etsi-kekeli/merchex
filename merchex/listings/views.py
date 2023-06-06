@@ -65,6 +65,19 @@ def listing_create(request):
     else:
         form = ListingForm()
         return render(request, 'listings/listing_create.html', {'form': form})
+    
+def listing_update(request, id):
+    listing = get_object_or_404(Listing, id=id)
+
+    if request.method == "POST":
+        form = ListingForm(request.POST, instance=listing)
+        if form.is_valid():
+            listing = form.save()
+            return redirect('listing-detail', listing.id)
+    else:
+        form = ListingForm(instance=listing)
+
+    return render(request, 'listings/listing_create.html', {'form': form, 'update': True})
 
 def contact(request):
     print(f"La méthode est : {request.method}")

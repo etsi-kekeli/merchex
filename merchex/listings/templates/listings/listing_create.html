@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<h1>Listing creation</h1>
+<h1>Listing {{update | yesno:"update,creation" }} </h1>
 
 <form action="" method="post" class="p-4">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-primary btn-md">Create</button>
+    <button type="submit" class="btn btn-primary btn-md">Submit</button>
 </form>
 
 {% endblock %} 
