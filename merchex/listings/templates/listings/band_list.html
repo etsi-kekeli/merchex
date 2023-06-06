@@ -4,9 +4,24 @@
     <p>
         <a href="{% url 'band-create' %}" class="btn btn-md btn-success">Add a new band</a>
     </p>
-    <ul>
-        {% for band in bands %}
-        <li><a href="{% url 'band-detail' band.id %}">{{band.name | upper}}</a></li>
-        {% endfor %}
-    </ul>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Band name</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for band in bands %}
+            <tr>
+                <td>
+                    <a href="{% url 'band-detail' band.id %}">{{band.name | upper}}</a>
+                </td>
+                <td>
+                    <a href="{% url 'band-update' band.id %}" class="btn btn-primary btn-sm">Update</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
