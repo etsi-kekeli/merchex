@@ -23,6 +23,10 @@ class Band(models.Model):
                     )
     active = models.BooleanField(default=True)
     official_homepage = models.URLField(null=True, blank=True)
+    # like_new = models.fields.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return f'{self.name}'
 
     
 class Listing(models.Model):
@@ -37,4 +41,5 @@ class Listing(models.Model):
     sold = models.BooleanField(default=False)
     year = models.IntegerField(null=True, validators=[MaxValueValidator(get_current_year)])
     type = models.CharField(max_length=5, choices=Type.choices, default=Type.MISCELLANEOUS)
+    band = models.ForeignKey(Band, on_delete=models.SET_NULL, null=True, blank=True)
     

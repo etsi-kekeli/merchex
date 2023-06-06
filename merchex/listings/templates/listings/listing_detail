@@ -1,0 +1,18 @@
+{% extends 'listings/base.html' %}
+{% block content %}
+    <h1>{{ listing.title }}</h1>
+    <ul>
+        <li>Description : {{listing.title}}</li>
+        <li>Sold : {{ listing.sold | yesno }}</li>
+        {% if listing.year %}
+        <li>Year : {{ listing.year }}</li>
+        {% endif %}
+        <li>Type : {{ listing.get_type_display }}</li>
+        {% if listing.band %}
+        <li>Band : <a href="{% url 'band-detail' listing.band.id %}">{{ listing.band }}</a></li>
+        {% endif %}
+    </ul>
+
+    <a href="{% url 'listing_list' %}">See all Listings</a>
+
+{% endblock %}

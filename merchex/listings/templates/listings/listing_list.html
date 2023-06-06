@@ -4,7 +4,9 @@
         <p>Awesome listings ! We have plenty of them !</p>
         <ul>
             {% for listing in listings %}
-            <li>{{listing.title}}</li>
+            <li>
+                <a href="{% url 'listing_detail' listing.id %}">{{listing.title}}</a>
+            </li>
             {% endfor %}
         </ul>
 {% endblock %}

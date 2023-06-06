@@ -1,10 +1,9 @@
 {% extends 'listings/base.html' %}
 {% block content %}
-    <h1>Welcome to Merchex</h1>
-    <p>My favorites bands are :</p>
+    <h1>Bands</h1>
     <ul>
         {% for band in bands %}
-        <li>{{band.name | upper}}</li>
+        <li><a href="{% url 'band-detail' band.id %}">{{band.name | upper}}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
