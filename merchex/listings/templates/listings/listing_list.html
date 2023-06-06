@@ -20,6 +20,7 @@
                     </td>
                     <td>
                         <a href="{% url 'listing-update' listing.id %}" class="btn btn-primary btn-sm">Update</a>
+                        <a href="{% url 'listing-delete' listing.id %}" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}

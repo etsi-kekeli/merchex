@@ -44,6 +44,23 @@ def band_update(request, id):
 
     return render(request, 'listings/band_create.html', {'form': form, 'update': True})
 
+def band_delete(request, id):
+    band = get_object_or_404(Band, id=id)
+
+    if request.method == 'POST':
+        band.delete()
+        return redirect('band-list')
+
+    return render(
+                request,
+                'listings/deletion.html',
+                {
+                    'entity': 'band',
+                    'prev': request.META.get('HTTP_REFERER') and '/',
+                    'name': band.name
+                }
+                )
+
 def about(request):
     return render(request, 'listings/about-us.html')
 
@@ -78,6 +95,22 @@ def listing_update(request, id):
         form = ListingForm(instance=listing)
 
     return render(request, 'listings/listing_create.html', {'form': form, 'update': True})
+
+def listing_delete(request, id):
+    listing = get_object_or_404(Listing, id=id)
+    if request.method == 'POST':
+        listing.delete()
+        return redirect('listing-list')
+    
+    return render(
+            request,
+            'listings/deletion.html',
+            {
+                'entity': 'listing',
+                'prev' : request.META.get('HTTP_REFERER') and '/',
+                'name': listing.title
+            }
+        )
 
 def contact(request):
     print(f"La méthode est : {request.method}")

@@ -1,0 +1,13 @@
+{% extends 'listings/base.html' %}
+{% block content %}
+    <h1>{{entity}} deletion</h1>
+    <p class="bg-light p-2">Are you sure you to delete the {{entity}} ``{{name}}`` ? </p>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <input type="submit" class="btn btn-danger" value="Yes, I'm sure">
+            <a href="{{ prev }}" class="btn btn-secondary">No</a>
+        </p>
+    </form>
+    
+{% endblock %}
