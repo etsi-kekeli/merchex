@@ -1,6 +1,9 @@
 {% extends 'listings/base.html' %}
 {% block content %}
     <h1>Bands</h1>
+    <p>
+        <a href="{% url 'band-create' %}" class="btn btn-md btn-success">Add a new band</a>
+    </p>
     <ul>
         {% for band in bands %}
         <li><a href="{% url 'band-detail' band.id %}">{{band.name | upper}}</a></li>
