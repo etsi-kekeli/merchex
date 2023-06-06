@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from .models import Band, Listing
+from .forms import ContactUsForm
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -28,7 +30,25 @@ def listing_list(request):
 
 def listing_detail(request, id):
     listing = get_object_or_404(Listing, id=id)
-    return render(request, 'listings/listing_detail', {'listing': listing})
+    return render(request, 'listings/listing_detail.html', {'listing': listing})
 
 def contact(request):
-    return render(request, 'listings/contact-us.html')
+    print(f"La méthode est : {request.method}")
+    print(f"Les données sont : {request.POST}")
+    if request.method == 'POST':
+        form = ContactUsForm(request.POST)
+
+        if form.is_valid():
+            send_mail(
+                subject=f"Message from {form.cleaned_data['name'] or 'anonyme'} from Merchex Contact Us form",
+                message= form.cleaned_data['message'],
+                from_email= form.cleaned_data['email'],
+                recipient_list = ['admin@merchex.xyz']
+            )
+            return redirect('email-sent')
+    else:
+        form = ContactUsForm()
+    return render(request, 'listings/contact-us.html', {'form': form})
+
+def email_sent(request):
+    return render(request, 'listings/email-sent.html')

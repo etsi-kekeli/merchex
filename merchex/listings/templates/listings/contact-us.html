@@ -1,7 +1,9 @@
 {% extends 'listings/base.html' %}
 {% block content %}
-    <h1>Contact us</h1>
-    <form method='POST'>
-
+    <h1>Contactez-nous, vous aidez serait un plaisir !</h1>
+    <form method='POST' novalidate action="" class="m-auto w-75">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Envoyer" class="btn btn-primary btn-sm">
     </form>
 {% endblock %}
