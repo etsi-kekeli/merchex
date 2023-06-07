@@ -1,29 +1,37 @@
-{% extends 'listings/base.html' %}
+{% extends 'listings/base.html' %} 
 {% block content %}
-    <h1>Listings</h1>
-    <p>
-        <a href="{% url 'listing-create' %}" class="btn btn-md btn-primary">Add a new listing</a>
-    </p>
-        <p>Awesome listings ! We have plenty of them !</p>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <td>Listings</td>
-                    <td>Actions</td>
-                </tr>
-            </thead>
-            <tbody>
-                {% for listing in listings %}
-                <tr>
-                    <td>
-                        <a href="{% url 'listing-detail' listing.id %}">{{listing.title }}</a>
-                    </td>
-                    <td>
-                        <a href="{% url 'listing-update' listing.id %}" class="btn btn-primary btn-sm">Update</a>
-                        <a href="{% url 'listing-delete' listing.id %}" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<h1>Listings</h1>
+<p>
+  <a 
+    href="{% url 'listing-create' %}" 
+    class="btn btn-md btn-success"
+  >Add a new listing</a>
+</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Listings</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for listing in listings %}
+    <tr>
+      <td>
+        <a href="{% url 'listing-detail' listing.id %}">{{listing.title }}</a>
+      </td>
+      <td>
+        <a
+          href="{% url 'listing-update' listing.id %}"
+          class="btn btn-primary btn-sm"
+          >Update</a>
+        <a
+          href="{% url 'listing-delete' listing.id %}"
+          class="btn btn-danger btn-sm"
+          >Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

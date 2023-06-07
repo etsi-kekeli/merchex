@@ -3,3 +3,7 @@
     color: red;
     /* background-color: lightcoral; */
 }
+
+body > * {
+    margin-left: 1%;
+}
